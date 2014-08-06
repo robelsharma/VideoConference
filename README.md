@@ -12,13 +12,13 @@ By this anyone can have a video chat in a same network, can have text chat in an
 FEATURE
 #################################################################################
 
-1.Multi Chat(Used Threadpole)
-2.P2P Chat
-3.P2P Audio Chat
-4.P2P Video Chat
-5.Completely Automated
-6.H263 compression Video
-7.raw audio
+1. Multi Chat(Used Threadpole)
+2. P2P Chat
+3. P2P Audio Chat
+4. P2P Video Chat
+5. Completely Automated
+6. H263 compression Video
+7. raw audio
 
 Descriptive feature:
 
@@ -34,8 +34,8 @@ PREREQUISITE:
 Compatibility:
 
 IDE:
-Tested with JCreator Pro.
-Tested with Eclipse.
+1. Tested with JCreator Pro.
+2. Tested with Eclipse.
 
 
 COMPONENT:
@@ -46,7 +46,7 @@ COMPONENT:
 
 1. Relay Server:
 ----------------
-
+```
 i.   ClientListener.java
 ii.  ClientMap.java
 iii. Clients.java
@@ -55,11 +55,11 @@ v.   MessageListener.java
 vi.  ServerConstant.java
 vii. ServerMonitor.java
 viii.ServerStatusListener.java
-
+```
 
 2. Client:
 ----------
-
+```
 i.   AVReceive2.java
 ii.  AVTransmit2.java
 iii. ClientConstant.java
@@ -76,7 +76,7 @@ xiii.Main.java
 xiv. MessageRecever.java
 xv.  MessagingFrame.java
 xvi. VideoTransmit.java
-
+```
 
 Configure:
 ----------
