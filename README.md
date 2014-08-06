@@ -93,7 +93,7 @@ After that you need to build the Server and Client code with the correct IP and 
 
 For Server settings in file ServerConstant.java -
 
-
+```
 public interface ServerConstant
 {
     public static final int SERVER_PORT=12345;
@@ -106,12 +106,13 @@ public interface ServerConstant
     public static final String MESSAGE_SEPARATOR=" >> ";
     
 }
+```
 
 SERVER_PORT=12345 is the port in which server is listening/waitting for client.
 
 
 For Server settings in file ClientConstant.java -
-
+```
 public interface ClientConstant
 {
     public static final String SERVER_ADDRESS="172.17.0.32";
@@ -120,6 +121,7 @@ public interface ClientConstant
     public static final String DISCONNECT_STRING="DISCONNECT";
     public static final String MESSAGE_SEPARATOR=" >> ";
 }
+```
 
 SERVER_ADDRESS="172.17.0.32" is the address of the server PC and SERVER_PORT=12345 is the server listening port.
 
