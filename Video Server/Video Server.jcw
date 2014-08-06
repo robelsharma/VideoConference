@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>Video Server</label>
+	</settings>
+	<users>
+		<user>
+			<path>Video Server.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>Video Server.jcp</path>
+		</project>
+	</projects>
+</workspace>

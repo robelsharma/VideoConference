@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+	<settings>
+		<label>Video Server</label>
+		<root_path>\</root_path>
+		<output_path>classes\</output_path>
+		<source_path>src\</source_path>
+		<jdkprofile_ref/>
+		<compiler_ref/>
+		<ant_ref/>
+	</settings>
+	<ant_events/>
+	<run_items/>
+	<runtimes>
+		<runtime>
+			<label>&lt;Default&gt;</label>
+			<application_ref/>
+			<applet_ref/>
+			<debugger_ref/>
+			<param/>
+			<run>MessengSrserver.Main</run>
+		</runtime>
+	</runtimes>
+	<libraries/>
+	<files>
+		<include>
+			<folderitem>
+				<path>src</path>
+			</folderitem>
+			<fileitem>
+				<path>src\ClientListener.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
+				<path>src\Clients.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
+				<path>src\Main.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
+				<path>src\MessageListener.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
+				<path>src\ServerConstant.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
+				<path>src\ServerManager.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
+				<path>src\ServerMonitor.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
+				<path>src\ServerStatusListener.java</path>
+				<folder>src</folder>
+			</fileitem>
+		</include>
+		<exclude>
+			<fileitem>
+				<path>src\ClientMap.java</path>
+			</fileitem>
+		</exclude>
+	</files>
+	<tasks>
+		<todotaskitem>
+			<description>TODO add your handling code here:</description>
+			<filepath>src\ServerMonitor.java</filepath>
+			<line>206</line>
+			<timestamp>1282196542</timestamp>
+		</todotaskitem>
+		<todotaskitem>
+			<description>TODO add your handling code here:</description>
+			<filepath>src\ServerMonitor.java</filepath>
+			<line>214</line>
+			<timestamp>1282196542</timestamp>
+		</todotaskitem>
+	</tasks>
+</project>
