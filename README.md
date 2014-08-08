@@ -145,6 +145,7 @@ AVTransmit2 vt = new AVTransmit2(new MediaLocator("vfw://0"),pt,"20006",null);
 AVTransmit2 at = new AVTransmit2(new MediaLocator("javasound://8000"),pt,"20008",null);
 ```
 It may be --
+
 1. vfw://0
 2. vfw://1
 3. vfw://2 , etc.
