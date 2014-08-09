@@ -27,8 +27,8 @@ i. Text chat, File transfer are done through server, where server is the middle-
 
 PREREQUISITE:
 
-1. JUST INSTALL jmf-2.1.1 e
-2. Require Java SDK installed.
+1. JUST INSTALL jmf-2.1.1 e 32-bit.
+2. Require Java SDK installed 32-bit.
 
 
 Compatibility:
@@ -150,6 +150,11 @@ It may be --
 2. vfw://1
 3. vfw://2 , etc.
 
+JCreator Pro build issue:
+
+If you are using Jcreator you must have to add JMF library path in project properties. It can be done by
+
+*Project->Project Settings->Required Libraries* and add JMF folders library name with location as archive.
 
 Known Issue:
 
