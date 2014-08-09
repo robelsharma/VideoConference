@@ -244,7 +244,7 @@ public class AVReceive2 implements ReceiveStreamListener, SessionListener,Contro
              // type of a data stream.   
              System.err.println("  - Received an RTP PayloadChangeEvent.");   
              System.err.println("Sorry, cannot handle payload change.");   
-             System.exit(0);   
+             //System.exit(0);   
          }   
          else if(evt instanceof NewReceiveStreamEvent)    
          {   
@@ -354,7 +354,7 @@ public class AVReceive2 implements ReceiveStreamListener, SessionListener,Contro
              {   
                  // Some strange happened.   
                  System.err.println("Internal error!");   
-                 System.exit(-1);   
+                 //System.exit(-1);   
              }   
              pw.initialize();   
              pw.setVisible(true);   
