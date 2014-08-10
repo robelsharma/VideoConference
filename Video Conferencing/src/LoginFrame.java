@@ -21,7 +21,7 @@ import java.util.StringTokenizer;
 import static messengerclient.ClientConstant.*;
 /**
  *
- * @author team3
+ * @author  sharma
  */
 public class LoginFrame extends javax.swing.JFrame {
 
@@ -113,7 +113,10 @@ public class LoginFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         mi_sign_in = new javax.swing.JMenuItem();
         mi_sign_out = new javax.swing.JMenuItem();
+        server_ip = new javax.swing.JMenuItem();
+        
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("User");
@@ -149,10 +152,18 @@ public class LoginFrame extends javax.swing.JFrame {
         jMenu1.add(mi_sign_out);
 
         jMenuBar1.add(jMenu1);
-
+        
+        jMenu3.setText("Settings");
+        server_ip.setText("Server Address");
+        jMenu3.add(server_ip);
+        
+        jMenuBar1.add(jMenu3);
+        
         jMenu2.setText("Help");
         jMenuBar1.add(jMenu2);
-
+        
+		
+		
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,11 +297,13 @@ public class LoginFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JLabel lb_status;
     private javax.swing.JMenuItem mi_sign_in;
     private javax.swing.JMenuItem mi_sign_out;
     private javax.swing.JPanel myPanel;
+    private javax.swing.JMenuItem server_ip;
     // End of variables declaration//GEN-END:variables
 
 }

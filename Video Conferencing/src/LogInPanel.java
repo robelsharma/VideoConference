@@ -13,7 +13,7 @@ package messengerclient;
 
 /**
  *
- * @author team3
+ * @author  sharma
  */
 public class LogInPanel extends javax.swing.JPanel {
 

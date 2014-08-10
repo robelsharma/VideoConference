@@ -17,7 +17,7 @@ import javax.swing.ListSelectionModel;
 
 /**
  *
- * @author team3
+ * @author  sharma
  */
 public class ClientListPanel extends javax.swing.JPanel {
 

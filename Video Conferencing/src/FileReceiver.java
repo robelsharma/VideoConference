@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  *
- * @author team3
+ * @author  sharma
  */
 public class FileReceiver implements Runnable
 {

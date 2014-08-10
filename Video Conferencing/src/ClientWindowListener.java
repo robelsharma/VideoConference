@@ -7,7 +7,7 @@ package messengerclient;
 
 /**
  *
- * @author team3
+ * @author  sharma
  */
 public interface ClientWindowListener
 {

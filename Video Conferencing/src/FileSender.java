@@ -7,7 +7,7 @@ package messengerclient;
 
 /**
  *
- * @author team3
+ * @author  sharma
  */
 import java.net.*;
 import java.io.*;

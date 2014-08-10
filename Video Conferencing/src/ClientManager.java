@@ -22,7 +22,7 @@ import static messengerclient.ClientConstant.*;
 
 /**
  *
- * @author team3
+ * @author  sharma
  */
 public class ClientManager
 {

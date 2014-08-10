@@ -22,9 +22,11 @@ import java.util.StringTokenizer;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 /**
  *
- * @author team3
+ * @author  sharma
  */
 public class MessagingFrame extends javax.swing.JFrame {
 
@@ -33,6 +35,7 @@ public class MessagingFrame extends javax.swing.JFrame {
     ClientManager clientManager;
     String from,to;
     ObjectInputStream input;
+    ExecutorService clientExecutor;
     public MessagingFrame(String getto,String getfrom,ClientManager getClientManager)
     {
         from=getfrom;
@@ -40,6 +43,7 @@ public class MessagingFrame extends javax.swing.JFrame {
         initComponents();
         setTitle(to);
         clientManager=getClientManager;
+        clientExecutor=Executors.newCachedThreadPool();
     }
 
     /** This method is called from within the constructor to
@@ -59,7 +63,9 @@ public class MessagingFrame extends javax.swing.JFrame {
         tp_write_message = new javax.swing.JTextPane();
         but_send = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         but_file = new javax.swing.JButton();
+        but_video = new javax.swing.JButton();
         tf_file = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -121,9 +127,38 @@ public class MessagingFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Video Conferencing......", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
-
-        but_file.setText("Video");
+		// Started video panel
+        
+		jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Video Conferencing...", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        
+        
+		but_video.setText("Start Video");
+        but_video.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_videoActionPerformed(evt);
+            }
+        });
+        
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(but_video))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(but_video)))
+        );
+        
+        //started file transfer panel
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "File Transfer...", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        
+        but_file.setText("Send File");
         but_file.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 but_fileActionPerformed(evt);
@@ -153,19 +188,24 @@ public class MessagingFrame extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
+        
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)	
                 .addGap(10, 10, 10))
+             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()	
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -178,8 +218,20 @@ public class MessagingFrame extends javax.swing.JFrame {
         sendMessage();
 
     }//GEN-LAST:event_but_sendActionPerformed
+    
+    private void but_fileActionPerformed(java.awt.event.ActionEvent evt) {
+    
+    String sFileName = tf_file.getText();
+    if(sFileName != "")
+    {
+    	FileSender pFileSend = new FileSender(sFileName);
+    	clientExecutor.execute(pFileSend);
+    }
+    
+    	
+    }
 
-    private void but_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_fileActionPerformed
+    private void but_videoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_fileActionPerformed
         // TODO add your handling code here:
   
   
@@ -251,11 +303,13 @@ public class MessagingFrame extends javax.swing.JFrame {
     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton but_video;
     private javax.swing.JButton but_file;
     public javax.swing.JButton but_send;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTextArea ta_view_message;
