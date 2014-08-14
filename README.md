@@ -165,5 +165,3 @@ Known Issue:
 5. File transfer is disabled.
 
 
-
-
