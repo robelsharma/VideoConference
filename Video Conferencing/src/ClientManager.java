@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static messengerclient.ClientConstant.*;
+import messengerclient.ServerSettings.*;
 
 /**
  *
@@ -39,7 +40,7 @@ public class ClientManager
         clientExecutor=Executors.newCachedThreadPool();
     }
 
-    public void connect(ClientStatusListener clientStatus)
+    public void connect(ClientStatusListener clientStatus, String sServerAddress, String sPort)
     {
         try
         {
@@ -47,8 +48,8 @@ public class ClientManager
                 return;
             else
             {
-                clientSocket=new Socket(SERVER_ADDRESS,SERVER_PORT);
-                clientStatus.loginStatus("You r connected to :"+SERVER_ADDRESS);
+                clientSocket=new Socket(sServerAddress,Integer.parseInt(sPort));
+                clientStatus.loginStatus("You are connected to :"+sServerAddress);
                 isConnected=true;
             }
         }
@@ -67,7 +68,7 @@ public class ClientManager
         messageRecever.stopListening();
         try
         {
-            clientStatus.loginStatus("You r no longer connected to Server");
+            clientStatus.loginStatus("You are no longer connected to Server");
             clientSocket.close();
         }
         catch (IOException ex)

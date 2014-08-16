@@ -32,6 +32,7 @@ public class LoginFrame extends javax.swing.JFrame {
     ClientStatusListener clientStatus;
     ClientListListener clientListListener;
     ClientWindowListener clientWindowListener;
+    ServerSettings serverSettings;
     String userName;
     int messagingFrameNo=0;
     MessagingFrame [] messagingFrames;
@@ -125,7 +126,7 @@ public class LoginFrame extends javax.swing.JFrame {
         myPanel.setLayout(myPanelLayout);
         myPanelLayout.setHorizontalGroup(
             myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 182, Short.MAX_VALUE)
+            .addGap(0, 282, Short.MAX_VALUE)
         );
         myPanelLayout.setVerticalGroup(
             myPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +134,7 @@ public class LoginFrame extends javax.swing.JFrame {
         );
 
         lb_status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_status.setText("You r not connected to server");
+        lb_status.setText("Please sign-in to the server.");
 
         jMenu1.setText("User");
 
@@ -153,8 +154,13 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
         
-        jMenu3.setText("Settings");
-        server_ip.setText("Server Address");
+        jMenu3.setText("IP Settings");
+        server_ip.setText("Server Settings");
+        server_ip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                server_ipActionPerformed(evt);
+            }
+        });
         jMenu3.add(server_ip);
         
         jMenuBar1.add(jMenu3);
@@ -189,15 +195,33 @@ public class LoginFrame extends javax.swing.JFrame {
     {
         if(!loginP.tf_user_name.getText().isEmpty())
         {
-            myPanel.remove(loginP);
-            clientManager.connect(clientStatus);
-            addBuddyList();
-            userName=loginP.tf_user_name.getText();
-            setTitle("H-Messenger ("+userName+")");
-            clientManager.sendMessage("login "+userName);
-            clientManager.receiveMessage(clientListListener, clientWindowListener);
-            mi_sign_in.setEnabled(false);
-            mi_sign_out.setEnabled(true);
+        	if(serverSettings != null)
+        	{
+        		String sIp = serverSettings.tf_ip.getText();
+        		String sPort = serverSettings.tf_port.getText();
+        		System.out.println("IP:"+sIp+"\n"+sPort);
+        		if(sIp != null && sPort != null)
+        		{
+        			myPanel.remove(loginP);
+	            	clientManager.connect(clientStatus,sIp, sPort);
+	            	addBuddyList();
+	            	userName=loginP.tf_user_name.getText();
+	            	setTitle("Video Messenger ("+userName+")");
+	            	clientManager.sendMessage("login "+userName);
+	            	clientManager.receiveMessage(clientListListener, clientWindowListener);
+	            	mi_sign_in.setEnabled(false);
+	            	mi_sign_out.setEnabled(true);
+        		}	
+        		else
+        		{
+        			javax.swing.JOptionPane.showMessageDialog(this,"Please enter your Server Settings");	
+        		}
+        	}
+        	else
+        	{
+        		javax.swing.JOptionPane.showMessageDialog(this,"Please enter your Server Settings");
+        	}		
+            
         }
         else
             javax.swing.JOptionPane.showMessageDialog(this,"Please enter your Name ");
@@ -214,6 +238,14 @@ public class LoginFrame extends javax.swing.JFrame {
         clientManager.disconnect(clientStatus);
     }//GEN-LAST:event_mi_sign_outActionPerformed
 
+	private void server_ipActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        // javax.swing.JOptionPane.showMessageDialog(this,"Please enter your Server Address ");
+        serverSettings = new ServerSettings();
+        serverSettings.setLocation(550,100);
+        serverSettings.setVisible(true);
+        
+    }
     class myClientStatus implements ClientStatusListener
     {
         public void loginStatus(String status)

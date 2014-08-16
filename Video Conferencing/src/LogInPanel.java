@@ -51,7 +51,7 @@ public class LogInPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(90, 90, 90)
                         .addComponent(but_signin)))
                 .addContainerGap(49, Short.MAX_VALUE))
             .addComponent(tf_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
