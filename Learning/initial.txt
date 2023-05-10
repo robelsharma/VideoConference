@@ -1,6 +1,0 @@
-# Here the program is consist of two class one is for server and other is for client Now to run this project we need 
-to know that what are the files available in the package further we need to setup configure with three devicen Now lets 
-get into learning and then move on to the implementation process further we plan to make any Update...! 
-
-
-    # Learn Technology Used --> Learn Code --> Implementation  --> Plan to make Updation 
